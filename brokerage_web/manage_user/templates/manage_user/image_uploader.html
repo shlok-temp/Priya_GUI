@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>The Tools Website | File Reader</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@700&display=swap');
+        .encode {
+            background-color: #060808;
+            border-radius: 1em;
+            border: none;
+            padding: 10px 20px;
+            color: white;
+            transition: .5s;
+        }
+        .encode:hover {
+            background-color: #121919;
+        }
+        h4 {
+            font-family: Noto Sans JP;
+        }
+        .go_back {
+            text-decoration: none;
+        }
+    </style>
+</head>
+<body>
+    <h2 style="text-align: center;">GNR 607 Project</h2>
+    <h3 style="text-align: center;">Priya Nemani</h3>
+
+    <ul>
+        <li>Step-1: Add your Image</li>
+        <li>Step-2: Change Intensity/Saturation/Hue boost values (tool support 1x,2x,3x boost)</li>
+        <li>Step-3: Click Submit</li>
+        <li>Step-4: Tool takes 10 seconds to compute</li>
+        <li>Step-5: See your original (on left) and modified image(on right) </li>
+    </ul>
+    <br><br>
+
+    <form method="POST" enctype="multipart/form-data">
+        {% csrf_token %}
+        {{ form.as_p }}
+        <br>
+        <div class="slidecontainer">
+            Intensity Boost (1x/2x/3x):<input type="range" min="1" max="3" value="1" class="slider" id="myRange">
+            Saturation Boost (1x/2x/3x):<input type="range" min="1" max="3" value="2" class="slider" id="myRange">
+            Hue Boost (1x/2x/3x):<input type="range" min="1" max="3" value="1" class="slider" id="myRange">
+          </div>
+        <button type="submit">Submit</button>
+    </form>
+    
+    <br>
+    {% if reader %}
+        <pre>{{ reader }}</pre>
+    {% endif %}
+</body>
+</html>
